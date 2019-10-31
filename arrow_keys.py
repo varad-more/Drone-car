@@ -16,15 +16,15 @@ def get():
                 k=inkey()
                 if k!='':break
         if k=='\x1b[A':
-                print "up"
+                print ("up")
         elif k=='\x1b[B':
-                print "down"
+                print ("down")
         elif k=='\x1b[C':
-                print "right"
+                print ("right")
         elif k=='\x1b[D':
-                print "left"
+                print ("left")
         else:
-                print "not an arrow key!"
+                print ("not an arrow key!")
 
 def main():
         for i in range(0,20):
