@@ -23,6 +23,12 @@ def get():
                 print ("right")
         elif k=='\x1b[D':
                 print ("left")
+        elif k=='www':
+                print ("Increase Throttle")
+        elif k=='sss':
+                print ("Decrease Throttle")
+
+
         else:
                 print ("not an arrow key!")
 
