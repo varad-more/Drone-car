@@ -15,7 +15,13 @@ GPIO.setup(12, GPIO.OUT)
 GPIO.setup(13, GPIO.OUT)
 GPIO.setup(15, GPIO.OUT)
 
+# 12 & 15 -- White Wings CCR
+# 11 & 13 -- Red Wings CR
 
+"""
+Front --- Span between 11 & 12
+Wider gap & camera holding
+"""
 t1 = GPIO.PWM(11, 50)
 t2 = GPIO.PWM(12, 50)
 t3 = GPIO.PWM(13, 50)
@@ -36,11 +42,11 @@ t4.ChangeDutyCycle(4.5)
 
 
 time.sleep(3)
-y=6.0
+y1=y2=y3=y4=6.0
 x = 0
 
 while x != chr(27): # ESC
-    l=r=up=dn=f=b=0.0
+    l=r=up=dn=fd=bk=0.0
 
     x=sys.stdin.read(1)[0]
     if x=="a":
@@ -51,25 +57,28 @@ while x != chr(27): # ESC
         r=0.1
     elif x=="s":
         print ("back")
-        b=0.1
+        bk=0.1
     elif x=="w":
         print ("Front")
-        f=0.1    
+        fd=0.1    
     elif x=="i":
         print ("Throttle Inc")
-        up=0.2
+        up=0.1
     elif x=="k":
         print ("Throttle Dec")
         dn=0.1
     else:
         print ("Invalid")
 
-    y=y+up-dn
-    print (y)
-    t1.ChangeDutyCycle(y)
-    t2.ChangeDutyCycle(y)
-    t3.ChangeDutyCycle(y)
-    t4.ChangeDutyCycle(y)
+    y1=y1+up-dn-fd+bk+r-l
+    y2=y2+up-dn-fd+bk-r+l
+    y3=y3+up-dn+fd-bk-r+l
+    y4=y4+up-dn+fd-bk+r-l
+    print (y1,"\t"+ y2,"\t" + y3,"\t" + y4 )
+    t1.ChangeDutyCycle(y1)
+    t2.ChangeDutyCycle(y2)
+    t3.ChangeDutyCycle(y3)
+    t4.ChangeDutyCycle(y4)
     #print (y+up-dn)
   #  print("You pressed", x)
 
