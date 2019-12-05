@@ -61,11 +61,11 @@ y1=y2=y3=y4=6.0
 x = 0
 mode=0
 while x != chr(27): # ESC
-    x=sys.stdin.read(1)[0]
 
     while (mode==1):
         l=r=up=dn=fd=bk=0.0
 
+        x=sys.stdin.read(1)[0]
         if x=="a":
             print ("Left")
             l=0.1
